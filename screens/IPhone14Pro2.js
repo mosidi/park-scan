@@ -33,13 +33,13 @@ const IPhone14Pro2 = () => {
         resizeMode="cover"
         source={require("../assets/unsplashp5a9mj4vls.png")}
       />
-      <StatusContainer
+      {/* <StatusContainer
         notch={{ uri: "notch2@3x.png" }}
         carImageUrl={require("../assets/right-side.png")}
         propColor="#fff"
         statusContainerStatusBarITop={-2}
         notchTop={2}
-      />
+      /> */}
       <LinearGradient
         style={[styles.iphone14Pro2Child, styles.homeindicatorPosition]}
         locations={[0, 1]}
@@ -121,9 +121,10 @@ const styles = StyleSheet.create({
   },
   noMoreFinesFlexBox: {
     textAlign: "center",
+    
     display: "flex",
     color: Color.labelColorDarkPrimary,
-    letterSpacing: 0,
+    letterSpacing:0.5,
     alignItems: "center",
     position: "absolute",
   },
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontFamily: FontFamily.defaultBoldBody1,
     textAlign: "left",
-    width: 160,
+    width: 170,
     height: 23,
     display: "flex",
     color: Color.labelColorDarkPrimary,
@@ -247,7 +248,7 @@ const styles = StyleSheet.create({
     bottom: "26.86%",
     left: "50%",
     maxHeight: "100%",
-    width: 58,
+    width: "15%",
     position: "absolute",
   },
   iphone14Pro2: {

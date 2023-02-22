@@ -79,7 +79,7 @@ const IPhone14Pro5 = () => {
       <Image
         style={[styles.iphone14Pro5Child4, styles.iphone14ChildLayout]}
         resizeMode="cover"
-        source={require("../assets/ellipse-24.png")}
+        source={require("../assets/ellipse-24.png")} 
       />
       <Image
         style={[styles.iphone14Pro5Child5, styles.iphone14ChildLayout]}
@@ -129,7 +129,7 @@ const IPhone14Pro5 = () => {
         source={require("../assets/ellipse-23.png")}
       />
       <Image
-        style={[styles.frameIcon, styles.iphone14ChildPosition]}
+        style={[styles.boy, styles.iphone14ChildPosition]}
         resizeMode="cover"
         source={require("../assets/frame-98.png")}
       />
@@ -202,14 +202,14 @@ const styles = StyleSheet.create({
   iphone14Pro5Child: {
     height: "4.44%",
     marginLeft: -111.5,
-    top: "31.07%",
+    top: "32.19%",
     bottom: "64.49%",
     width: 193,
     maxHeight: "100%",
   },
   iphone14Pro5Item: {
-    height: "85.63%",
-    width: "246.04%",
+    height: "67.63%",
+    width: "100.04%",
     top: "34%",
     right: "-146.04%",
     bottom: "-19.63%",
@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
   },
   fitTheWhole: {
     fontSize: FontSize.size_xs,
-    lineHeight: 18,
+    // lineHeight: 18,
     fontWeight: "500",
     fontFamily: FontFamily.dMSansMedium,
     color: Color.gray_200,
@@ -406,8 +406,8 @@ const styles = StyleSheet.create({
     width: 18,
     maxHeight: "100%",
   },
-  frameIcon: {
-    height: "22.55%",
+  boy: {
+    height: "24%",
     marginLeft: -73.58,
     top: "11.21%",
     bottom: "66.24%",

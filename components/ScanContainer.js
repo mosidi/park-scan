@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   get15Scans: {
     fontSize: FontSize.size_base,
     letterSpacing: 0,
-    lineHeight: 11,
+    // lineHeight: 11,
     fontWeight: "700",
     fontFamily: FontFamily.dMSansBold,
     color: Color.midnightblue_200,

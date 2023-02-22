@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   parkscan: {
     fontSize: FontSize.size_3xl,
     letterSpacing: -2,
-    lineHeight: 22,
+    // lineHeight: 22,
     fontWeight: "500",
     fontFamily: FontFamily.dMSansMedium,
     color: Color.midnightblue_300,
