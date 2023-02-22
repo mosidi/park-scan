@@ -35,7 +35,8 @@ const IPhone14Pro6 = () => {
       <Pressable
         style={styles.buyProAccessWrapper}
         onPress={() => navigation.navigate("IPhone14Pro13")}
-      />
+      ><Text style={styles.buypro}>Buy <Text style={styles.PRO}>PRO</Text> access</Text>
+        </Pressable>
       <Text style={[styles.contact, styles.guideLayout]}>Contact</Text>
       <Text style={[styles.changeLanguage, styles.guideLayout]}>
         Change language
@@ -55,6 +56,18 @@ const IPhone14Pro6 = () => {
         Share with friends
       </Text>
       <Text style={[styles.giveUsA, styles.guideLayout]}>Give us a review</Text>
+      <TouchableOpacity 
+      style={styles.guide}
+      onPress={() => navigation.navigate("IPhone14Pro5")}
+      >
+      <Text style={styles.lgooutguide}>Guide</Text>
+      </TouchableOpacity>
+      <TouchableOpacity 
+      style={styles.logout}
+      onPress={() => navigation.navigate("IPhone14Pro2")}
+      >
+      <Text style={styles.lgooutguide}>Logout</Text>
+      </TouchableOpacity>
       <Text style={[styles.stopGettingThoseContainer, styles.settingsFlexBox]}>
         <Text style={styles.stopGettingThoseAnnoyingPa}>
           <Text style={styles.stopGettingThoseAnnoyingPa1}>
@@ -396,7 +409,7 @@ const styles = StyleSheet.create({
     left: "10.4%",
     fontSize: 24,
     color: Color.darkslategray_200,
-    lineHeight: 30,
+    lineHeight: 22,
     height: "3.02%",
   },
   settings: {
@@ -405,7 +418,7 @@ const styles = StyleSheet.create({
     left: "10.87%",
     color: Color.black,
     fontSize: FontSize.size_xl,
-    lineHeight: 30,
+    lineHeight: 22,
     height: "3.02%",
   },
   buyProAccessWrapper: {
@@ -739,6 +752,36 @@ const styles = StyleSheet.create({
     backgroundColor: Color.labelColorDarkPrimary,
     width: "100%",
   },
+  PRO:{
+    fontWeight: 'bold'
+  },
+  buypro:{
+      top: "20%",   
+  },
+  guide:{
+    height: "3.54%",
+    width: "54.24%",
+    top: "74.83%",
+    right: "25.71%",
+    bottom: "61.63%",
+    left: "20.05%",
+    position: "absolute",
+  },
+  logout:{
+    height: "3.54%",
+    width: "54.24%",
+    top: "79.83%",
+    right: "25.71%",
+    bottom: "61.63%",
+    left: "20.05%",
+    position: "absolute",
+    
+  },
+  lgooutguide:{
+    fontFamily: FontFamily.dMSansRegular,
+    fontSize: FontSize.size_base,
+  }
+
 });
 
 export default IPhone14Pro6;

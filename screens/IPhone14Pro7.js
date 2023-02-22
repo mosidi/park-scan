@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   parkscan: {
     fontSize: FontSize.size_3xl,
     letterSpacing: -2,
-    lineHeight: 22,
+    // lineHeight: 22,
     fontWeight: "500",
     fontFamily: FontFamily.dMSansMedium,
     color: Color.midnightblue_300,
@@ -143,12 +143,12 @@ const styles = StyleSheet.create({
   parkscanWrapper: {
     height: "9.12%",
     width: "99.74%",
-    top: "87.6%",
+    top: "85.6%",
     right: "0.77%",
     bottom: "3.27%",
     left: "-0.51%",
     paddingHorizontal: Padding.p_3xl,
-    paddingVertical: Padding.p_xl,
+    // paddingVertical: Padding.p_xl,
     alignItems: "flex-end",
     overflow: "hidden",
   },
