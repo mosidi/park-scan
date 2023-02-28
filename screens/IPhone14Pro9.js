@@ -43,6 +43,7 @@ const IPhone14Pro9 = () => {
         resizeMode="cover"
         source={require("../assets/rectangle-5.png")}
       />
+      
       <Text style={styles.payWith}>PAY WITH</Text>
       <Image
         style={[styles.clipPathGroup, styles.clipGroupPosition]}

@@ -1,18 +1,22 @@
 import * as React from "react";
-import { Image, StyleSheet, View, Text } from "react-native";
-import StatusContainer from "../components/StatusContainer";
+import { Image, StyleSheet, View, Text,useColorScheme } from "react-native";
+// import StatusContainer from "../components/StatusContainer";
 import { FontSize, FontFamily, Color, Padding } from "../GlobalStyles";
 
+
 const IPhone14Pro1 = () => {
+//   const colorScheme = useColorScheme(); // 'light' or 'dark'
+//   // ...
+// }
   return (
     <View style={styles.iphone14Pro1}>
-      <StatusContainer
+      {/* <StatusContainer
         notch={require("../assets/notch.png")}
         carImageUrl={require("../assets/right-side1.png")}
         propColor="#010101"
         statusContainerStatusBarITop={0}
         notchTop={0}
-      />
+      /> */}
       <Image
         style={styles.iphone14Pro1Child}
         resizeMode="cover"

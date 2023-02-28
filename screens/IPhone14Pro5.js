@@ -1,9 +1,11 @@
 import * as React from "react";
-import { Image, StyleSheet, View, Text, StatusBar } from "react-native";
-import FlashContainer from "../components/FlashContainer";
+import { Image, StyleSheet, View, Text, StatusBar,Pressable } from "react-native";
 import { Color, Border, Padding, FontSize, FontFamily } from "../GlobalStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const IPhone14Pro5 = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.iphone14Pro5}>
       <Image
@@ -16,7 +18,7 @@ const IPhone14Pro5 = () => {
         resizeMode="cover"
         source={require("../assets/frame-54.png")}
       />
-      <FlashContainer />
+      {/* <FlashContainer /> */}
       <View style={[styles.iphone14Pro5Inner, styles.iphone14ChildLayout1]} />
       <View style={[styles.rectangleView, styles.iphone14ChildLayout1]} />
       <View style={[styles.iphone14Pro5Child1, styles.iphone14ChildLayout1]} />
@@ -71,6 +73,11 @@ const IPhone14Pro5 = () => {
         resizeMode="cover"
         source={require("../assets/ellipse-27.png")}
       />
+        <Image
+      style={styles.iconBolt}
+      resizeMode="cover"
+      source={require("../assets/-icon-bolt.png")}
+    />
       <Image
         style={[styles.iphone14Pro5Child3, styles.iphone14ChildPosition]}
         resizeMode="cover"
@@ -133,6 +140,22 @@ const IPhone14Pro5 = () => {
         resizeMode="cover"
         source={require("../assets/frame-98.png")}
       />
+      <View style={styles.nextButtonWrapper}>
+      <View style={styles.nextButton}>
+        <View style={styles.nextButtonChild} />
+        <Pressable
+          style={[styles.nextButtonItem, styles.nextPosition]}
+          onPress={() => navigation.navigate("IPhone14Pro7")}
+        />
+        <Image
+          style={styles.vectorIcon}
+          resizeMode="cover"
+          source={require("../assets/vector19.png")}
+        />
+        <Text style={[styles.next, styles.nextPosition]}>Next</Text>
+      </View>
+    </View>
+    
     </View>
   );
 };
@@ -272,18 +295,20 @@ const styles = StyleSheet.create({
   },
   iconBolt: {
     width: "4.35%",
-    top: "78.97%",
+    top: "78.99%",
     bottom: "18.69%",
     right: "81.84%",
-    height: "2.34%",
+    height: "2.64%",
+    position: "absolute",
   },
+ 
   iconUserUnfollow: {
     width: 21,
     height: 25,
   },
   iconUserUnfollowWrapper: {
     height: "1.64%",
-    width: "3.84%",
+    width: "4.94%",
     top: "71.03%",
     right: "82.35%",
     bottom: "27.34%",
@@ -420,6 +445,72 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: "100%",
     flex: 1,
+  },
+  nextPosition: {
+    top: "50%",
+    position: "absolute",
+  },
+  nextButtonChild: {
+    height: "84.06%",
+    top: "0%",
+    right: 22,
+    bottom: "15.94%",
+    left: 23,
+    borderRadius: Border.br_2xl,
+    backgroundColor: Color.midnightblue_100,
+    position: "absolute",
+  },
+  nextButtonItem: {
+    marginTop: -20.42,
+    right: 37,
+    left: 160,
+    borderRadius: Border.br_lg,
+    backgroundColor: Color.whitesmoke_100,
+    height: 30,
+  },
+  vectorIcon: {
+    height: "15.94%",
+    width: "2.61%",
+    top: "34.78%",
+    right: "25.75%",
+    bottom: "49.28%",
+    left: "71.64%",
+    maxWidth: "100%",
+    overflow: "hidden",
+    maxHeight: "100%",
+    position: "absolute",
+  },
+  next: {
+    marginTop: -12.5,
+    left: 21,
+    fontSize: FontSize.size_sm,
+    letterSpacing: 0,
+    lineHeight: 18,
+    fontWeight: "500",
+    fontFamily: FontFamily.dMSansMedium,
+    color: Color.labelColorDarkPrimary,
+    textAlign: "center",
+    display: "flex",
+    alignItems: "center",
+    width: 139,
+    height: 14,
+    justifyContent: "center",
+  },
+  nextButton: {
+    width: 268,
+    height: 69,
+  },
+  nextButtonWrapper: {
+    height: "8.06%",
+    width: "67.26%",
+    top: "87.73%",
+    right: "16.88%",
+    bottom: "4.21%",
+    left: "15.86%",
+    flexDirection: "row",
+    alignItems: "flex-end",
+    justifyContent: "center",
+    position: "absolute",
   },
 });
 

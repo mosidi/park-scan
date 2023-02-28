@@ -15,19 +15,19 @@ import {
   Padding,
 } from "../GlobalStyles";
 
-const ParkContainer = ({ carImageUrl, vehicleImageUrl }) => {
+const ParkContainer =()=> {
   return (
     <View style={styles.iphone14Pro4Inner}>
       <View style={[styles.iconCheckCircleParent, styles.youCanParkFlexBox]}>
         <Image
           style={styles.iconCheckCircle}
           resizeMode="cover"
-          source={carImageUrl}
+          // source={require("../assets/-icon-check-circle6.png")}
         />
-        <Image
+         <Image
           style={[styles.frameChild, styles.ml13]}
           resizeMode="cover"
-          source={vehicleImageUrl}
+          source={require("../assets/vector-96.png")}
         />
         <Text
           style={[styles.youCanPark, styles.ml13, styles.youCanParkFlexBox]}
@@ -39,7 +39,9 @@ const ParkContainer = ({ carImageUrl, vehicleImageUrl }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({  ml13: {
+
+
   ml13: {
     marginLeft: Margin.m_lg,
   },
@@ -57,6 +59,17 @@ const styles = StyleSheet.create({
     width: 1,
     height: 31,
   },
+  marginLeft: Margin.m_lg,
+},
+iconCreditCard: {
+  width: 33,
+  height: 25,
+},
+frameChild: {
+  borderRadius: Border.br_md,
+  width: 1,
+  height: 31,
+},
   youCanPark: {
     fontSize: FontSize.size_base,
     letterSpacing: 0,

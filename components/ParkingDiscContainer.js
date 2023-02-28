@@ -19,11 +19,11 @@ const ParkingDiscContainer = ({ group59, vector9 }) => {
   return (
     <View style={styles.iphone14Pro4Inner}>
       <View style={[styles.groupParent, styles.youNeedAFlexBox]}>
-        <Image style={styles.frameChild} resizeMode="cover" source={group59} />
+        <Image style={styles.frameChild} resizeMode="cover" source={require("../assets/group-591.png")} />
         <Image
           style={[styles.frameItem, styles.ml13]}
           resizeMode="cover"
-          source={vector9}
+          source={require("../assets/vector-95.png")}
         />
         <Text style={[styles.youNeedA, styles.ml13, styles.youNeedAFlexBox]}>
           You need a parking disc

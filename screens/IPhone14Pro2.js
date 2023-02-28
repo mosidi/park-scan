@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   Image,
   StyleSheet,
@@ -6,6 +5,7 @@ import {
   Pressable,
   Text,
   TouchableOpacity,
+  Platform 
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import StatusContainer from "../components/StatusContainer";
@@ -22,9 +22,38 @@ import {
   FontSize,
   Margin,
 } from "../GlobalStyles";
+import React, { useState } from 'react';
+import { GoogleSignin } from 'react-native-google-signin';
+import axios from 'axios';
+import authConfig from '../googleAuth.json'
 
 const IPhone14Pro2 = () => {
   const navigation = useNavigation();
+
+  const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        GoogleSignin.configure({
+          webClientId: '70912332722-j7nbv1mms67fkt6m4aiekn5qdotlggpk.apps.googleusercontent.com',
+          offlineAccess: true,
+        });
+      }, []);
+
+      
+      const handleLogin = async () => {
+        try {
+          await GoogleSignin.hasPlayServices();
+          const userInfo = await GoogleSignin.signIn();
+          setLoggedIn(true);
+          const response = await axios.post('https://parking-app-379214-default-rtdb.firebaseio.com/', {
+            token: userInfo.idToken,
+          });
+          navigation.navigate('Home')
+          console.log(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
   return (
     <View style={styles.iphone14Pro2}>
@@ -34,9 +63,9 @@ const IPhone14Pro2 = () => {
         source={require("../assets/unsplashp5a9mj4vls.png")}
       />
       {/* <StatusContainer
-        notch={{ uri: "notch2@3x.png" }}
-        carImageUrl={require("../assets/right-side.png")}
-        propColor="#fff"
+        // notch={{ uri: "notch2@3x.png" }}
+        // carImageUrl={require("../assets/right-side.png")}
+        propColor="white"
         statusContainerStatusBarITop={-2}
         notchTop={2}
       /> */}
@@ -45,7 +74,29 @@ const IPhone14Pro2 = () => {
         locations={[0, 1]}
         colors={["rgba(3, 29, 30, 0)", "#60219f"]}
       />
-      <TouchableOpacity
+        {Platform.OS === 'android' ? (
+        <TouchableOpacity style={[styles.logGoogle, styles.logGoogleFlexBox]}
+        onPress={handleLogin}
+        >
+          <View style={[styles.googleParent, styles.parentFlexBox]}>
+            <Image
+              style={styles.googleIcon}
+              resizeMode="cover"
+              source={require("../assets/google.png")}
+            />
+            <Text
+              style={[
+                styles.continueWithGoogle,
+                styles.ml9,
+                styles.noMoreFinesFlexBox,
+              ]}
+            >
+              Continue with Google
+            </Text>
+          </View>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
         style={styles.signinwithapple}
         activeOpacity={0.2}
         onPress={() => navigation.navigate("IPhone14Pro5")}
@@ -61,6 +112,8 @@ const IPhone14Pro2 = () => {
           Continue with Apple
         </Text>
       </TouchableOpacity>
+      )}
+      
       <Text
         style={[styles.byContinuingYouContainer, styles.noMoreFinesFlexBox]}
       >
@@ -94,19 +147,10 @@ const IPhone14Pro2 = () => {
         resizeMode="cover"
         source={require("../assets/group-46.png")}
       />
-      <ScanContainer
-        iconCheckCircle={require("../assets/-icon-check-circle5.png")}
-        vector9={require("../assets/vector-94.png")}
-      />
-      <ParkingDiscContainer
-        group59={require("../assets/group-591.png")}
-        vector9={require("../assets/vector-95.png")}
-      />
-      <ImageContainer vehicleImageUrl={require("../assets/vector-96.png")} />
-      <ParkContainer
-        carImageUrl={require("../assets/-icon-check-circle6.png")}
-        vehicleImageUrl={{ uri: "vector-97@3x.png" }}
-      />
+      <ScanContainer/>
+      <ParkingDiscContainer/>
+      <ImageContainer/>
+      <ParkContainer/>
     </View>
   );
 };
@@ -257,6 +301,45 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: "100%",
     backgroundColor: Color.black,
+  },
+  googleIcon: {
+    width: 30,
+    height: 30,
+    borderRadius: Border.br_xl,
+    overflow: "hidden",
+  },
+  continueWithGoogle: {
+    fontSize: FontSize.defaultBoldBody1_size,
+    fontFamily: FontFamily.interRegular,
+  },
+  googleParent: {
+    justifyContent: "center",
+    flex: 1,
+  },
+  logGoogle: {
+    height: "5.9%",
+    top: "82.43%",
+    right: 49,
+    bottom: "11.67%",
+    left: 54,
+    backgroundColor: Color.tomato,
+    paddingHorizontal: Padding.p_lg,
+    paddingVertical: Padding.p_xs,
+    alignItems: "flex-end",
+    borderRadius: Border.br_xl,
+  },
+  logGoogleFlexBox: {
+    flexDirection: "row",
+    justifyContent: "center",
+    position: "absolute",
+  },
+  parentFlexBox: {
+    alignSelf: "stretch",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  ml9: {
+    marginLeft: 9,
   },
 });
 

@@ -6,7 +6,6 @@ import IPhone14Pro2 from "./screens/IPhone14Pro2";
 import IPhone14Pro1 from "./screens/IPhone14Pro1";
 import IPhone14Pro14 from "./screens/IPhone14Pro14";
 import IPhone14Pro13 from "./screens/IPhone14Pro13";
-import FrameScreen from "./screens/FrameScreen";
 import IPhone14Pro4 from "./screens/IPhone14Pro4";
 import IPhone14Pro6 from "./screens/IPhone14Pro6";
 import IPhone14Pro15 from "./screens/IPhone14Pro15";
@@ -14,14 +13,8 @@ import IPhone14Pro7 from "./screens/IPhone14Pro7";
 import IPhone14Pro5 from "./screens/IPhone14Pro5";
 import IPhone14Pro10 from "./screens/IPhone14Pro10";
 import IPhone14Pro9 from "./screens/IPhone14Pro9";
-import FlashOn from "./screens/FlashOn";
 import IPhone14Pro41 from "./screens/IPhone14Pro41";
-import GroupIcon from "./screens/GroupIcon";
-import IconUserUnfollow from "./screens/IconUserUnfollow";
-import IconSnowflake from "./screens/IconSnowflake";
-import IconBolt from "./screens/IconBolt";
-import IconCamera from "./screens/IconCamera";
-import IconStar from "./screens/IconStar";
+import { AppearanceProvider } from 'expo-system-ui';
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
@@ -54,6 +47,7 @@ const App = () => {
 
   return (
     <>
+    <AppearanceProvider>
       <NavigationContainer>
         {hideSplashScreen ? (
           <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -77,11 +71,11 @@ const App = () => {
               component={IPhone14Pro13}
               options={{ headerShown: false }}
             />
-            <Stack.Screen
+            {/* <Stack.Screen
               name="Frame75"
               component={FrameScreen}
               options={{ headerShown: false }}
-            />
+            /> */}
             <Stack.Screen
               name="IPhone14Pro4"
               component={IPhone14Pro4}
@@ -117,51 +111,23 @@ const App = () => {
               component={IPhone14Pro9}
               options={{ headerShown: false }}
             />
-            <Stack.Screen
+            {/* <Stack.Screen
               name="FlashOn"
               component={FlashOn}
               options={{ headerShown: false }}
-            />
+            /> */}
             <Stack.Screen
               name="IPhone14Pro41"
               component={IPhone14Pro41}
               options={{ headerShown: false }}
             />
-            <Stack.Screen
-              name="Group55"
-              component={GroupIcon}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="IconUserUnfollow"
-              component={IconUserUnfollow}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="IconSnowflake"
-              component={IconSnowflake}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="IconBolt"
-              component={IconBolt}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="IconCamera"
-              component={IconCamera}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="IconStar"
-              component={IconStar}
-              options={{ headerShown: false }}
-            />
+            
           </Stack.Navigator>
         ) : (
           <IPhone14Pro1 />
         )}
       </NavigationContainer>
+      </AppearanceProvider>
     </>
   );
 };

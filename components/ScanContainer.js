@@ -15,19 +15,19 @@ import {
   Padding,
 } from "../GlobalStyles";
 
-const ScanContainer = ({ iconCheckCircle, vector9 }) => {
+const ScanContainer = ({ iconCheckCircle }) => {
   return (
     <View style={styles.iphone14Pro4Inner}>
       <View style={[styles.iconCheckCircleParent, styles.get15ScansFlexBox]}>
         <Image
           style={styles.iconCheckCircle}
           resizeMode="cover"
-          source={iconCheckCircle}
+          source={require("../assets/-icon-check-circle5.png")}
         />
         <Image
           style={[styles.frameChild, styles.ml13]}
           resizeMode="cover"
-          source={vector9}
+          source={require("../assets/vector-94.png")}
         />
         <Text
           style={[styles.get15Scans, styles.ml13, styles.get15ScansFlexBox]}

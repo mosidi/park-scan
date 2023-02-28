@@ -27,7 +27,7 @@ const ImageContainer = ({ carImageUrl, vehicleImageUrl }) => {
         <Image
           style={[styles.frameChild, styles.ml13]}
           resizeMode="cover"
-          source={vehicleImageUrl}
+          source={require("../assets/vector-96.png")}
         />
         <Text style={[styles.youDontNeed, styles.ml13]}>
           You don’t need to pay
