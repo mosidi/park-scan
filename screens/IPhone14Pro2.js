@@ -7,8 +7,9 @@ import {
   TouchableOpacity,
   Platform 
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import StatusContainer from "../components/StatusContainer";
+import React,{useEffect,useState} from "react";
+import LinearGradient from 'react-native-linear-gradient';
+// import StatusContainer from "../components/StatusContainer";
 import { useNavigation } from "@react-navigation/native";
 import ScanContainer from "../components/ScanContainer";
 import ParkingDiscContainer from "../components/ParkingDiscContainer";
@@ -22,39 +23,143 @@ import {
   FontSize,
   Margin,
 } from "../GlobalStyles";
-import React, { useState } from 'react';
-import { GoogleSignin } from 'react-native-google-signin';
-import axios from 'axios';
-import authConfig from '../googleAuth.json'
+import { GoogleSignin,statusCodes } from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
+import appleAuth, {
+  AppleAuthRequestOperation,
+  AppleAuthRequestScope,
+} from '@invertase/react-native-apple-authentication';
+import { navigate } from "@react-navigation/routers/lib/typescript/src/CommonActions";
+// import axios from 'axios';
+// import authConfig from '../googleAuth.json'
 
+GoogleSignin.configure({
+  webClientId:
+  "402220314576-rblk1278hvvg2cjj6pstqk7r6gvvsmjk.apps.googleusercontent.com",
+  offlineAccess: true,
+  androidClientId:"1:402220314576:android:a5dec03b4b2969253353d5"
+  });
 const IPhone14Pro2 = () => {
+
   const navigation = useNavigation();
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  //GOOGLE Sign in
+  const [userInfo, setUserInfo] = useState(null); 
+  
+ 
+ const onGoogleButtonPress = async () => {
+  let isLoginSuccessful = false;
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      setUserInfo(userInfo);
+      const { idToken } = userInfo;
+      const credential = auth.GoogleAuthProvider.credential(idToken);
 
-    useEffect(() => {
-        GoogleSignin.configure({
-          webClientId: '70912332722-j7nbv1mms67fkt6m4aiekn5qdotlggpk.apps.googleusercontent.com',
-          offlineAccess: true,
+      // Sign in the user with the credential
+      auth().signInWithCredential(credential)
+        .then(() => {
+    console.log('User account created & signed in!');
+  })
+      // console.log("this is user info ", userInfo)
+      isLoginSuccessful = true;
+    } catch (error) {
+      console.log(error,"this error")
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+      } else {
+        // some other error happened
+      }
+    }
+    if (isLoginSuccessful) {
+      navigation.navigate("IPhone14Pro5");
+    }
+  };
+
+  
+  //APPLE Sign in
+    const handleAppleLogin=async () => {
+      try {
+        const appleAuthRequestResponse = await appleAuth.performRequest({
+          requestedOperation: AppleAuthRequestOperation.LOGIN,
+          requestedScopes: [
+            AppleAuthRequestScope.EMAIL,
+            AppleAuthRequestScope.FULL_NAME,
+          ],
         });
-      }, []);
-
-      
-      const handleLogin = async () => {
-        try {
-          await GoogleSignin.hasPlayServices();
-          const userInfo = await GoogleSignin.signIn();
-          setLoggedIn(true);
-          const response = await axios.post('https://parking-app-379214-default-rtdb.firebaseio.com/', {
-            token: userInfo.idToken,
-          });
-          navigation.navigate('Home')
-          console.log(response.data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-
+        const { identityToken, nonce } = appleAuthRequestResponse
+        loginWithApple(identityToken, nonce)
+        .then(async response => {
+          if (response?.user) {
+            //handle successful login
+            resolve({success: true})
+          } else {
+            //handle unsuccessful login
+            resolve({success: false})
+          }
+        })
+        console.log('appleAuthRequestResponse: ', appleAuthRequestResponse);
+        navigation.navigate("IPhone14Pro5");
+      } catch (error) {
+        console.log('appleAuth.performRequest error: ', error);
+      }
+    }
+    const loginWithApple = (identityToken, nonce) => { 
+      const appleCredential = RNFirebaseAuth.auth.AppleAuthProvider.credential(
+        identityToken,
+        nonce,
+      )
+      return new Promise((resolve, _reject) => {
+        RNFirebaseAuth
+          .auth()
+          .signInWithCredential(credential)
+          .then(response => {
+            const isNewUser = response.additionalUserInfo.isNewUser
+            const {
+              first_name,
+              last_name,
+              family_name,
+              given_name,
+            } = response.additionalUserInfo.profile
+            const { uid, email, phoneNumber, photoURL } = response.user
+            const defaultProfilePhotoURL =
+              'https://www.iosapptemplates.com/wp-content/uploads/2019/06/empty-avatar.jpg'
+            if (isNewUser) {
+              const timestamp = firebase.firestore.FieldValue.serverTimestamp()
+              const userData = {
+                id: uid,
+                email: email || '',
+                firstName: first_name || given_name || '',
+                lastName: last_name || family_name || '',
+                phone: phoneNumber || '',
+                profilePictureURL: photoURL || defaultProfilePhotoURL,
+                userID: uid,
+                createdAt: timestamp,
+              }
+              // PERSIST NEW USER DATA TO YOU PREFFERRED DB AND SAVE ON REDUX
+            }
+            // UPDATE USER LAST LOGIN
+            resolve({success: true})
+            
+          })
+          .catch(_error => {
+            console.log(_error)
+            resolve({ success: false })
+          })
+      })
+    }
+    //test for user info
+    // if (userInfo) {
+    //   return (
+    //     <View>
+    //       <Text>Welcome, {userInfo.user.name}!</Text>
+    //     </View>
+    //   );
+    // } 
   return (
     <View style={styles.iphone14Pro2}>
       <Image
@@ -75,8 +180,9 @@ const IPhone14Pro2 = () => {
         colors={["rgba(3, 29, 30, 0)", "#60219f"]}
       />
         {Platform.OS === 'android' ? (
+         
         <TouchableOpacity style={[styles.logGoogle, styles.logGoogleFlexBox]}
-        onPress={handleLogin}
+        onPress={onGoogleButtonPress}
         >
           <View style={[styles.googleParent, styles.parentFlexBox]}>
             <Image
@@ -99,7 +205,7 @@ const IPhone14Pro2 = () => {
         <TouchableOpacity
         style={styles.signinwithapple}
         activeOpacity={0.2}
-        onPress={() => navigation.navigate("IPhone14Pro5")}
+        onPress={handleAppleLogin}
       >
         <View style={styles.appleLogo}>
           <Image
@@ -153,6 +259,7 @@ const IPhone14Pro2 = () => {
       <ParkContainer/>
     </View>
   );
+      
 };
 
 const styles = StyleSheet.create({
@@ -249,7 +356,7 @@ const styles = StyleSheet.create({
     margin: Margin.m_sm,
   },
   byContinuingYouContainer1: {
-    lineBreak: "anywhere",
+    // lineBreak: "anywhere",
     width: "100%",
   },
   byContinuingYouContainer: {
@@ -261,12 +368,12 @@ const styles = StyleSheet.create({
     width: 132,
   },
   noMoreFines: {
-    height: "4.14%",
+    height: "7.14%",
     width: "51.55%",
-    top: "73.91%",
+    top: "73.99%",
     left: "25.65%",
     fontSize: FontSize.size_xl,
-    lineHeight: 18,
+    // lineHeight: 18,
     justifyContent: "center",
   },
   homeIndicator: {
@@ -303,20 +410,27 @@ const styles = StyleSheet.create({
     backgroundColor: Color.black,
   },
   googleIcon: {
+    marginLeft:"13%",
+    right:30,
     width: 30,
     height: 30,
     borderRadius: Border.br_xl,
     overflow: "hidden",
+    // right:100
   },
   continueWithGoogle: {
+    paddingLeft:40,
     fontSize: FontSize.defaultBoldBody1_size,
     fontFamily: FontFamily.interRegular,
   },
   googleParent: {
-    justifyContent: "center",
+     
+    // justifyContent: "center",
+    flexDirection: 'row',
     flex: 1,
   },
   logGoogle: {
+    
     height: "5.9%",
     top: "82.43%",
     right: 49,
@@ -327,8 +441,11 @@ const styles = StyleSheet.create({
     paddingVertical: Padding.p_xs,
     alignItems: "flex-end",
     borderRadius: Border.br_xl,
+    flex:1,
+    flexDirection:"row"
   },
   logGoogleFlexBox: {
+   
     flexDirection: "row",
     justifyContent: "center",
     position: "absolute",

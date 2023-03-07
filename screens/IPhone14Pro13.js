@@ -137,7 +137,13 @@ const IPhone14Pro13 = () => {
         onPress={() => navigation.navigate("IPhone14Pro14")}
       >
         <Text style={[styles.payWith, styles.payFlexBox]}>Pay with</Text>
-        <Text style={[styles.pay, styles.ml3, styles.payFlexBox]}>Pay</Text>
+        <Text style={[styles.pay, styles.ml3, styles.payFlexBox]}>
+        {/* <Image
+          style={styles.appleIcon}
+          // resizeMode="cover"
+          source={require("../assets/appl@2x.png")}
+        /> */}
+          Pay</Text>
       </TouchableOpacity>
       <StatusBar style={styles.vectorIconPosition} barStyle="default" />
     </View>
@@ -406,6 +412,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     width: "100%",
   },
+  appleIcon:{
+    backgroundColor:"black"
+  }
 });
 
 export default IPhone14Pro13;

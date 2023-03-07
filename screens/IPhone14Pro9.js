@@ -499,6 +499,7 @@ const styles = StyleSheet.create({
   },
   vectorIcon: {
     top: 325,
+    // color:"black"
   },
   youCanPark: {
     height: "4.34%",

@@ -1,4 +1,4 @@
-import * as React from "react";
+import  React, {useState} from "react";
 import {
   StyleSheet,
   View,
@@ -7,7 +7,9 @@ import {
   Image,
   TouchableOpacity,
   StatusBar,
+  Alert
 } from "react-native";
+import auth from '@react-native-firebase/auth';
 import { useNavigation } from "@react-navigation/native";
 import {
   FontFamily,
@@ -17,9 +19,32 @@ import {
   Padding,
   Margin,
 } from "../GlobalStyles";
+import { GoogleSignin,statusCodes } from '@react-native-google-signin/google-signin';
+
+
 
 const IPhone14Pro6 = () => {
   const navigation = useNavigation();
+
+  const [isSigningOut, setIsSigningOut] = useState(false);
+
+  const handleGoogleSignOut = async () => {
+    try {
+      setIsSigningOut(true);
+      await GoogleSignin.revokeAccess();
+      await GoogleSignin.signOut();
+      await auth().signOut();
+      setIsSigningOut(false);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'IPhone14Pro2' }],
+      });
+
+    } catch (error) {
+      Alert.alert('Error', error.message);
+      setIsSigningOut(false);
+    }
+  };
 
   return (
     <View style={styles.iphone14Pro6}>
@@ -64,7 +89,8 @@ const IPhone14Pro6 = () => {
       </TouchableOpacity>
       <TouchableOpacity 
       style={styles.logout}
-      onPress={() => navigation.navigate("IPhone14Pro2")}
+      disabled={isSigningOut}
+      onPress={handleGoogleSignOut}
       >
       <Text style={styles.lgooutguide}>Logout</Text>
       </TouchableOpacity>
@@ -79,6 +105,7 @@ const IPhone14Pro6 = () => {
         <Text style={styles.readMore}>
           <Text style={styles.stopGettingThoseAnnoyingPa1}>
             <Text style={styles.proTypo}>
+            {"\n"}
               <Text style={styles.read2}>Read</Text>
             </Text>
           </Text>
@@ -99,11 +126,12 @@ const IPhone14Pro6 = () => {
       />
       <View style={[styles.iphone14Pro6Child1, styles.iphone14ChildPosition]} />
       <View style={[styles.iphone14Pro6Child2, styles.iphone14ChildPosition]} />
-      <Image
+      {/* Line on indector home */}
+      {/* <Image
         style={styles.iphone14Pro6Child3}
         resizeMode="cover"
         source={require("../assets/line-20.png")}
-      />
+      /> */}
       <Image
         style={[styles.iphone14Pro6Child4, styles.lineIconLayout]}
         resizeMode="cover"
@@ -405,12 +433,11 @@ const styles = StyleSheet.create({
   },
   heyNiceTo: {
     width: "77.54%",
-    top: "15.78%",
+    top: "14.78%",
     left: "10.4%",
     fontSize: 24,
     color: Color.darkslategray_200,
-    lineHeight: 22,
-    height: "3.02%",
+    // height: "3.02%",
   },
   settings: {
     width: "43.74%",
@@ -464,7 +491,7 @@ const styles = StyleSheet.create({
     marginBlockEnd: 0,
   },
   read2: {
-    textDecoration: "underline",
+    // textDecoration: "underline",
   },
   readMore: {
     margin: Margin.m_sm,
@@ -631,10 +658,13 @@ const styles = StyleSheet.create({
   icon: {
     height: "100%",
     width: "100%",
+    
+  
   },
   vector: {
-    width: 12,
-    height: 18,
+    // paddingRight:8,
+    width: 11,
+    height: 17,
   },
   vectorWrapper: {
     borderRadius: Border.br_3xs,
@@ -650,11 +680,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: 37,
     height: 40,
-    paddingHorizontal: Padding.p_md,
+    paddingHorizontal: Padding.p_sm,
     paddingVertical: Padding.p_sm,
     flexDirection: "row",
     borderStyle: "solid",
     backgroundColor: Color.labelColorDarkPrimary,
+    alignContent:"center"
   },
   iphone14Pro6Inner1: {
     height: "4.69%",
@@ -753,10 +784,12 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   PRO:{
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color:"black"
   },
   buypro:{
-      top: "20%",   
+      top: "20%", 
+      color:"black"  
   },
   guide:{
     height: "3.54%",
@@ -776,10 +809,12 @@ const styles = StyleSheet.create({
     left: "20.05%",
     position: "absolute",
     
+    
   },
   lgooutguide:{
     fontFamily: FontFamily.dMSansRegular,
     fontSize: FontSize.size_base,
+    color:"black"
   }
 
 });

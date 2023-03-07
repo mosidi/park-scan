@@ -114,7 +114,7 @@ const IPhone14Pro5 = () => {
         style={[
           styles.text3,
           styles.textFlexBox,
-          styles.textFlexBox1,
+          // styles.textFlexBox1,
           styles.textPosition1,
         ]}
       >
@@ -186,15 +186,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "absolute",
   },
-  textFlexBox1: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  // textFlexBox1: {
+  //   // flexDirection: "row",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  // },
   textPosition1: {
     left: "21.48%",
     flexDirection: "row",
-    height: "2.1%",
+    height: "2.4%",
   },
   iconPosition: {
     left: "13.81%",
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   wrapperFlexBox: {
-    padding: Padding.p_xs,
+    paddingLeft: Padding.p_xs,
     height: "4.32%",
     justifyContent: "center",
     alignItems: "center",
@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
   },
   text: {
     width: "62.92%",
-    top: "53.86%",
+    // top: "53.86%",
     right: "15.6%",
     bottom: "44.04%",
     justifyContent: "center",
@@ -406,7 +406,7 @@ const styles = StyleSheet.create({
   },
   text3: {
     width: "64.71%",
-    top: "71.14%",
+    // top: "71.14%",
     right: "13.81%",
     bottom: "26.75%",
     justifyContent: "center",
@@ -481,11 +481,11 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   next: {
-    marginTop: -12.5,
+    marginTop: -18.5,
     left: 21,
     fontSize: FontSize.size_sm,
     letterSpacing: 0,
-    lineHeight: 18,
+    // lineHeight: 18,
     fontWeight: "500",
     fontFamily: FontFamily.dMSansMedium,
     color: Color.labelColorDarkPrimary,
@@ -493,7 +493,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     width: 139,
-    height: 14,
+    height: 20,
     justifyContent: "center",
   },
   nextButton: {

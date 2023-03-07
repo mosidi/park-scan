@@ -156,10 +156,7 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
   },
-  drowerBtn: {
-    width: 20,
-    height: 18,
-  },
+
   drowerBtnWrapper: {
     borderRadius: Border.br_3xs,
     shadowColor: "rgba(186, 175, 175, 0.5)",
@@ -193,7 +190,7 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.dMSansBold,
     color: Color.darkslategray_200,
     textAlign: "center",
-    width: 156,
+    // width: 156,
     height: 38,
   },
   text: {

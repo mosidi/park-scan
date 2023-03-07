@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Image, StyleSheet, View, Text, Pressable } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import LinearGradient from 'react-native-linear-gradient';
 import StatusContainer from "../components/StatusContainer";
 import ParkingDiscFilter from "../components/ParkingDiscFilter";
 import {
@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
     margin: Margin.m_sm,
   },
   byContinuingYouContainer1: {
-    lineBreak: "anywhere",
+    // lineBreak: "anywhere",
     width: "100%",
   },
   byContinuingYouContainer: {

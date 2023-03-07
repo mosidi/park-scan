@@ -1,12 +1,12 @@
-const Stack = createNativeStackNavigator();
-import * as React from "react";
+
+import React,{useEffect} from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import IPhone14Pro2 from "./screens/IPhone14Pro2";
 import IPhone14Pro1 from "./screens/IPhone14Pro1";
 import IPhone14Pro14 from "./screens/IPhone14Pro14";
 import IPhone14Pro13 from "./screens/IPhone14Pro13";
-import IPhone14Pro4 from "./screens/IPhone14Pro4";
+// import IPhone14Pro4 from "./screens/IPhone14Pro4";
 import IPhone14Pro6 from "./screens/IPhone14Pro6";
 import IPhone14Pro15 from "./screens/IPhone14Pro15";
 import IPhone14Pro7 from "./screens/IPhone14Pro7";
@@ -14,12 +14,13 @@ import IPhone14Pro5 from "./screens/IPhone14Pro5";
 import IPhone14Pro10 from "./screens/IPhone14Pro10";
 import IPhone14Pro9 from "./screens/IPhone14Pro9";
 import IPhone14Pro41 from "./screens/IPhone14Pro41";
-import { AppearanceProvider } from 'expo-system-ui';
+//import { AppearanceProvider } from 'expo-system-ui';
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text, Pressable, TouchableOpacity } from "react-native";
+// import { View, Text, Pressable, TouchableOpacity } from "react-native";
 
 const App = () => {
+  const Stack = createNativeStackNavigator();
   const [hideSplashScreen, setHideSplashScreen] = React.useState(false);
   const [fontsLoaded, error] = useFonts({
     Inter: require("./assets/fonts/Inter.ttf"),
@@ -35,7 +36,7 @@ const App = () => {
     Georama_extrabold: require("./assets/fonts/Georama_extrabold.ttf"),
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       setHideSplashScreen(true);
     }, 2000);
@@ -47,7 +48,7 @@ const App = () => {
 
   return (
     <>
-    <AppearanceProvider>
+    {/* <AppearanceProvider> */}
       <NavigationContainer>
         {hideSplashScreen ? (
           <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -76,11 +77,11 @@ const App = () => {
               component={FrameScreen}
               options={{ headerShown: false }}
             /> */}
-            <Stack.Screen
+            {/* <Stack.Screen
               name="IPhone14Pro4"
               component={IPhone14Pro4}
               options={{ headerShown: false }}
-            />
+            /> */}
             <Stack.Screen
               name="IPhone14Pro6"
               component={IPhone14Pro6}
@@ -121,13 +122,13 @@ const App = () => {
               component={IPhone14Pro41}
               options={{ headerShown: false }}
             />
-            
+
           </Stack.Navigator>
         ) : (
           <IPhone14Pro1 />
         )}
       </NavigationContainer>
-      </AppearanceProvider>
+      {/* </AppearanceProvider> */}
     </>
   );
 };

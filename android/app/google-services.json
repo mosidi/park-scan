@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "402220314576",
+    "firebase_url": "https://parking-scanner-default-rtdb.firebaseio.com",
+    "project_id": "parking-scanner",
+    "storage_bucket": "parking-scanner.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402220314576:android:a5dec03b4b2969253353d5",
+        "android_client_info": {
+          "package_name": "com.parkingscannerappios.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402220314576-7rlosjui9279u8co1ku33e1b8kj0ehg4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.parkingscannerappios.app",
+            "certificate_hash": "4e18d81084cf7b4675b27c3ecf1b91fa998f1c18"
+          }
+        },
+        {
+          "client_id": "402220314576-rblk1278hvvg2cjj6pstqk7r6gvvsmjk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAE9-SkfigqXVw5wl368N7zlMt6ko_6IJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402220314576-2kpusrnlpg69s8tbu51k0s7lhr96p544.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

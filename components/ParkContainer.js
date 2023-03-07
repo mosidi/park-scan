@@ -22,10 +22,10 @@ const ParkContainer =()=> {
         <Image
           style={styles.iconCheckCircle}
           resizeMode="cover"
-          // source={require("../assets/-icon-check-circle6.png")}
+          source={require("../assets/-icon-check-circle6.png")}
         />
          <Image
-          style={[styles.frameChild, styles.ml13]}
+          style={[styles.frameChild, styles.ml12]}
           resizeMode="cover"
           source={require("../assets/vector-96.png")}
         />
@@ -39,9 +39,8 @@ const ParkContainer =()=> {
   );
 };
 
-const styles = StyleSheet.create({  ml13: {
-
-
+const styles = StyleSheet.create({ 
+   ml12: { marginLeft: Margin.m_lg},
   ml13: {
     marginLeft: Margin.m_lg,
   },
@@ -59,8 +58,8 @@ const styles = StyleSheet.create({  ml13: {
     width: 1,
     height: 31,
   },
-  marginLeft: Margin.m_lg,
-},
+  
+
 iconCreditCard: {
   width: 33,
   height: 25,
